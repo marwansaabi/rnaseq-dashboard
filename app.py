@@ -117,7 +117,7 @@ cpm = cpm_normalize(counts)
 
 @st.cache_data(show_spinner=False)
 def run_de(counts, metadata, group_a, group_b):
-    return differential_expression(counts, metadata, group_col="Condition", group_a=group_a, group_b=group_b, min_counts=50)
+    return differential_expression(counts, metadata, group_col="Condition", group_a=group_a, group_b=group_b)
 
 with st.spinner("Running differential expression analysis..."):
     de_results = run_de(counts, metadata, group_a, group_b)

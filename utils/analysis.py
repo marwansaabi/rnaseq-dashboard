@@ -52,7 +52,7 @@ def differential_expression(
     group_col: str = "Condition",
     group_a: str = "Control",
     group_b: str = "Treatment",
-    min_counts: int = 10,
+    min_counts: int = None,
 ) -> pd.DataFrame:
     """
     Perform differential expression analysis between two groups.
@@ -64,7 +64,11 @@ def differential_expression(
     counts_a = counts[samples_a]
     counts_b = counts[samples_b]
 
-    # Filter lowly expressed genes (more aggressive for speed)
+    # Auto min_counts: at least 10, or ~2 reads per sample
+    if min_counts is None:
+        min_counts = max(10, counts.shape[1] * 2)
+
+    # Filter lowly expressed genes
     keep = (counts_a.sum(axis=1) >= min_counts) | (counts_b.sum(axis=1) >= min_counts)
     genes = counts.index[keep]
     counts_a = counts_a.loc[genes].values.astype(float)
