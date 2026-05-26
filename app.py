@@ -11,26 +11,9 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom CSS
+# Custom CSS (theme-safe)
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 0.2rem;
-    }
-    .sub-header {
-        font-size: 1.1rem;
-        color: #64748b;
-        margin-bottom: 2rem;
-    }
-    .metric-card {
-        background: #f8fafc;
-        border-radius: 12px;
-        padding: 1.2rem;
-        border: 1px solid #e2e8f0;
-    }
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
     }
@@ -122,8 +105,8 @@ st.sidebar.markdown("---")
 st.sidebar.caption("v1.0 · Built with Streamlit & Plotly")
 
 # Main header
-st.markdown('<div class="main-header">RNA-seq Analysis Dashboard</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-header">Differential expression, quality control & pathway exploration</div>', unsafe_allow_html=True)
+st.title("🧬 RNA-seq Analysis Dashboard")
+st.caption("Differential expression, quality control & pathway exploration")
 
 # Metrics
 from utils.analysis import cpm_normalize, log2_cpm, differential_expression, run_pca, get_de_genes, mock_enrichment
