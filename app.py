@@ -115,8 +115,12 @@ from utils.plots import plot_pca, plot_volcano, plot_heatmap, plot_ma, plot_samp
 log_cpm = log2_cpm(counts)
 cpm = cpm_normalize(counts)
 
+@st.cache_data(show_spinner=False)
+def run_de(counts, metadata, group_a, group_b):
+    return differential_expression(counts, metadata, group_col="Condition", group_a=group_a, group_b=group_b, min_counts=50)
+
 with st.spinner("Running differential expression analysis..."):
-    de_results = differential_expression(counts, metadata, group_col="Condition", group_a=group_a, group_b=group_b)
+    de_results = run_de(counts, metadata, group_a, group_b)
     de_results = get_de_genes(de_results, pval_thresh=pval_thresh, log2fc_thresh=log2fc_thresh, use_padj=use_padj)
 
 sig_up = ((de_results["padj"] < pval_thresh) & (de_results["log2FC"] > log2fc_thresh)).sum()
