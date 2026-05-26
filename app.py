@@ -123,8 +123,8 @@ with st.spinner("Running differential expression analysis..."):
     de_results = run_de(counts, metadata, group_a, group_b)
     de_results = get_de_genes(de_results, pval_thresh=pval_thresh, log2fc_thresh=log2fc_thresh, use_padj=use_padj)
 
-sig_up = ((de_results["padj"] < pval_thresh) & (de_results["log2FC"] > log2fc_thresh)).sum()
-sig_down = ((de_results["padj"] < pval_thresh) & (de_results["log2FC"] < -log2fc_thresh)).sum()
+sig_up = (de_results["Regulation"] == "Up-regulated").sum()
+sig_down = (de_results["Regulation"] == "Down-regulated").sum()
 
 m1, m2, m3, m4 = st.columns(4)
 m1.metric("Genes", f"{counts.shape[0]:,}")
