@@ -98,13 +98,14 @@ def plot_heatmap(counts: pd.DataFrame, de_results: pd.DataFrame, metadata: pd.Da
     return fig
 
 
-def plot_ma(de_results: pd.DataFrame, pval_thresh: float = 0.05) -> go.Figure:
+def plot_ma(de_results: pd.DataFrame, pval_thresh: float = 0.05, use_padj: bool = True) -> go.Figure:
     """MA plot: mean expression vs log2 fold change."""
     df = de_results.copy()
     df["mean_expr"] = (df["mean_A"] + df["mean_B"]) / 2
     df["-log10(padj)"] = -np.log10(df["padj"].clip(lower=1e-300))
 
-    df["Significant"] = df["padj"] < pval_thresh
+    pcol = "padj" if use_padj else "pvalue"
+    df["Significant"] = df[pcol] < pval_thresh
     df["Color"] = df["Significant"].map({True: "#10B981", False: "#9CA3AF"})
 
     fig = go.Figure()

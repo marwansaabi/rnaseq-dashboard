@@ -238,7 +238,7 @@ with tab_viz:
         st.plotly_chart(fig_volc, use_container_width=True)
     with c2:
         st.subheader("MA plot")
-        fig_ma = plot_ma(de_results, pval_thresh=pval_thresh)
+        fig_ma = plot_ma(de_results, pval_thresh=pval_thresh, use_padj=use_padj)
         st.plotly_chart(fig_ma, use_container_width=True)
 
     st.subheader("Heatmap (top DE genes)")
