@@ -1,0 +1,13 @@
+Sample,Condition,Batch,RIN
+Sample_01,Control,A,9.7
+Sample_02,Control,A,7.6
+Sample_03,Control,A,8.7
+Sample_04,Control,A,9.2
+Sample_05,Control,B,9.5
+Sample_06,Control,B,7.9
+Sample_07,Treatment,B,9.3
+Sample_08,Treatment,B,8.8
+Sample_09,Treatment,C,8.4
+Sample_10,Treatment,C,7.8
+Sample_11,Treatment,C,9.5
+Sample_12,Treatment,C,7.9
