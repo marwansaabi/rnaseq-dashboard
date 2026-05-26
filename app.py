@@ -141,7 +141,7 @@ with tab_overview:
     with c1:
         st.subheader("Expression matrix")
         st.dataframe(
-            counts.head(200).style.background_gradient(axis=1, cmap="YlGnBu"),
+            counts.head(200).style.background_gradient(axis=1, cmap="YlGnBu").format("{:.0f}"),
             use_container_width=True,
             height=350,
         )
